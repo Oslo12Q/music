@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>music</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link rel="stylesheet" href="/static/css/layui.css"  media="all">
+
+<style>  
+    .loadingWrap{  
+    position:fixed;  
+    top:0;  
+    left:0;  
+    width:100%;  
+    height:100%;  
+    z-index:300;  
+    background-image:url(loading.gif);  
+    background-repeat:no-repeat;  
+    background-position:center center;  
+    background-color:#000;  
+    background-color:rgba(0,0,0,0.5);  
+    filter:alpha(opacity=50);  
+    }  
+</style>  
+</head>
+<body background="/static/img/timg1.jpg">
+          
+<blockquote class="layui-elem-quote layui-text">
+<h1 align="center">music</h1>
+</blockquote>
+              
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+  <legend></legend>
+</fieldset>
+ 
+<div class="layui-form" align="center">
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">搜索用户ID</label>
+            <div class="layui-input-inline">
+              <input type="text" name="mic_id" id="mic_id" placeholder="搜索用户ID" class="layui-input"/>
+            </div>
+      </div>
+    </div>
+    
+  <div class="layui-form-item">
+    <button class="layui-btn" id="submit">提交</button>
+  </div>
+
+</form>
+          
+
+
+<script src="/static/js/layui.js" charset="utf-8"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#submit").click(function(){
+            var mic_id = $("#mic_id").val();
+            var reg = /^[\u4e00-\u9fa5]{2,}$/;
+            if (mic_id == "" || mic_id == null || mic_id.length === 0){
+               alert("请输入您查询的用户ID！");
+               return;
+            }
+            var num_re = /^\d+$/;
+            if (!num_re.test(mic_id)) {
+                alert("ID必须为数字类型！");
+               return;
+            }
+            
+            $.ajax({
+                url:'/search_music/',
+                method:'post',
+                data:{'mic_id':mic_id},
+                dataType:'text',
+                success:function(result){
+                    var json_dict = $.parseJSON(result);
+                    var uid = json_dict['uid'];
+                    if(json_dict['ret_cd'] === 200){
+                      alert("提交成功！");
+                      window.location.href='/details_html/?uid='+uid;  
+                    }else{
+                      alert("提交失败！用户ID不存在");
+                    }
+                }
+            });
+
+        });
+    });
+</script>
+</body>
+</html>
