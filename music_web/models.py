@@ -15,5 +15,5 @@ class MUSIC(models.Model):
      
     class Meta:
         managed = False
-        db_table = 'music_web_music'
+        db_table = 'music_web_weather'
     

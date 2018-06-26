@@ -17,7 +17,7 @@ def song_all(id,uids):
         url = 'http://music.163.com/#/user/songs/rank?id=%s' % id
         options = webdriver.ChromeOptions()
         options.add_argument('--headless')
-        driver = webdriver.Chrome(chrome_options=options,executable_path='/usr/bin/chromedriver')#chrome浏览器的驱动
+        driver = webdriver.Chrome(chrome_options=options,executable_path='d:\chromedriver.exe')#chrome浏览器的驱动
 
         driver.get("%s"%url)#需要抓取的用户链接，这里注意的是这里的id不是用户的id，而是用户听歌形成的所有时间排行的排行版的id
         # driver.find_element_by_id('')

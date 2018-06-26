@@ -86,10 +86,10 @@ DATABASES = {
 DATABASES = {
         'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ljqchlsw$music',
-        'USER': 'ljqchlsw',
-        'PASSWORD': 'nicaicai',
-        'HOST': 'ljqchlsw.mysql.pythonanywhere-services.com',
+        'NAME': 'ceshi1',
+        'USER': 'root',
+        'PASSWORD': 'root',
+        'HOST': '127.0.0.1',
         'PORT': '3306',
     }
 }
